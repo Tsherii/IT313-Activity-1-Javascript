@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Writing DOM</title>
+  </head>
+  <body>
+
+
+    <!-- no more additional HTML tags -->
+    <div id="app"></div>
+
+    <script>
+      // Create container div
+        const container = document.createElement("formContainer");
+        container.style.maxWidth = "400px";
+        document.body.appendChild(container);
+  
+
+      // Create and append heading
+        const heading = document.createElement("h2");
+        heading.textContent = "Registration Form";
+        heading.style.textAlign = "center";
+        container.appendChild(heading);
+
+        
+      // Create form element
+        const form = document.createElement("form");
+        form.id = "registrationForm";
+        form.style.display = "flex";
+        form.style.flexDirection = "column";
+        form.style.alignItems = "center";
+        form.style.justifyContent = "center";
+        form.style.gap = "15px";
+        container.appendChild(form);
+
+        
+      // Create input fields
+        const createInputField = (labelText, inputType, inputId) => {
+          const formContainer = document.createElement("form-container");
+
+          const label = document.createElement("label");
+          label.setAttribute("for", inputId);
+          label.textContent = labelText;
+          formContainer.appendChild(label);
+
+          const input = document.createElement("input");
+          input.type = inputType;
+          input.id = inputId;
+          input.name = inputId;
+          input.required = true;
+          input.style.width = "400px";
+          input.style.alignItems = "center";
+          input.style.display = "flex";
+          input.style.flexDirection = "column";
+          formContainer.appendChild(input);
+
+          return formContainer;
+        };
+
+      // input fields to the form
+        form.appendChild(createInputField("First Name:", "text", "firstName"));
+        form.appendChild(createInputField("Last Name:", "text", "lastName"));
+        form.appendChild(createInputField("Email:", "email", "email"));
+        form.appendChild(createInputField("Password:", "password", "password"));
+        form.appendChild(createInputField("Confirm Password:", "password", "confirmPassword"));
+
+
+      // submit button
+        const button = document.createElement("button");
+        button.type = "submit";
+        button.textContent = "Register";
+        button.style.padding = "10px";
+        button.style.cursor = "pointer";
+        form.appendChild(button);
+
+
+      // getting data
+       const firstNameInput = document.getElementById("firstName");
+       const lastNameInput = document.getElementById("lastName");
+       const emailInput = document.getElementById("email");
+       const passwordInput = document.getElementById("password");
+       const confirmPasswordInput = document.getElementById("confirmPassword");
+
+
+      // Events
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+          
+        // Email validation
+          const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+          if (!emailPattern.test(email.value)) {
+            alert('Please enter a valid email address (e.g., taylor@sweep.com).');
+            return;
+          }
+  
+        // Password confirmation
+          if (password.value !== confirmPassword.value) {
+            alert('Passwords do not match.');
+            return;
+          }
+
+        // Registration success
+        alert('Registration successful!');
+      });
+  
+    </script>
+  </body>
+</html>
